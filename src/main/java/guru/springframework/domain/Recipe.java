@@ -1,12 +1,14 @@
 package guru.springframework.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@EqualsAndHashCode(exclude = {"notes","categories"})
 @Entity
 public class Recipe {
 
@@ -40,7 +42,7 @@ public class Recipe {
 
 
     // if property is deleted in Recipe, it will also be deleted in Notes
-    @OneToOne(cascade= CascadeType.ALL)
+    @OneToOne( cascade= CascadeType.ALL)
     private Notes notes;
 
     @ManyToMany

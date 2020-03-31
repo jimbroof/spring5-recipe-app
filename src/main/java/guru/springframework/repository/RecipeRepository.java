@@ -7,8 +7,4 @@ import org.springframework.data.repository.CrudRepository;
 // ask the database about properties using query methods.
 public interface RecipeRepository extends CrudRepository<Recipe,Long> {
 
-
-
-
-
 }
