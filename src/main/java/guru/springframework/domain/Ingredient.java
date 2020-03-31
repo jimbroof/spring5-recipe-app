@@ -1,8 +1,13 @@
-package guru.springframework.controllers.domain;
+package guru.springframework.domain;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Data
+@EqualsAndHashCode(exclude = "recipe")
 @Entity
 public class Ingredient {
 
@@ -17,7 +22,17 @@ public class Ingredient {
     private Recipe recipe;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private UnitOfMeasure unitOfMeasure;
+    private UnitOfMeasure uom;
+
+    public Ingredient() {
+    }
+
+    public Ingredient(String description,BigDecimal amount, UnitOfMeasure uom){
+        this.description = description;
+        this.amount = amount;
+        this.uom = uom;
+    }
+
 
     public Long getId() {
         return id;
@@ -51,13 +66,12 @@ public class Ingredient {
         this.recipe = recipe;
     }
 
-
-    public UnitOfMeasure getUnitOfMeasure() {
-        return unitOfMeasure;
+    public UnitOfMeasure getUom() {
+        return uom;
     }
 
-    public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
-        this.unitOfMeasure = unitOfMeasure;
+    public void setUnitOfMeasure(UnitOfMeasure uom) {
+        this.uom = uom;
     }
 
 }
